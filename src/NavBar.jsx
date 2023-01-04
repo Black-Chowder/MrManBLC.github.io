@@ -27,7 +27,7 @@ export const NavBar = ({itemSelected}) => {
       <li 
         ref={thisRef} 
         id={name}
-        className="Topic" 
+        className="Topic text-platinum" 
         onClick={() => calcNavBarTransform(thisRef)}>
           {name}
       </li>
@@ -38,13 +38,13 @@ export const NavBar = ({itemSelected}) => {
     <div className="pt-0 px-5 h-full w-full z-10">
       
       {/* "Logo" here */}
-      <div className="LogoContainer bg-space-cadet-800 shadow-lg shadow-space-cadet-900">
-        <h1 className="text-3xl font-extrabold text-center">MrManBLC</h1>
+      <div className="LogoContainer bg-lilac shadow-md shadow-gunmetal">
+        <h1 className="text-3xl font-extrabold text-center text-white">MrManBLC</h1>
       </div>
 
       {/* Content listed here */}
       <div className="TopicsContainer">
-        <div className="SelectedBar bg-lavender" 
+        <div className="SelectedBar bg-platinum" 
         style={{transform:`translate(0px, ${selectedBarY[0]}px)`}}></div> {/* Selector */}
 
         <ul className="flex flex-col" ref={topicsListRef}>

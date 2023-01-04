@@ -13,7 +13,14 @@ module.exports = {
       'space-cadet-700': '#313D5A',
       'space-cadet-800': '#242D42',
       'space-cadet-900': '#161B27',
-      'gunmetal': '#183642'
+      'gunmetal': '#183642',
+      'lavender-500': '#f8A4D8',
+      'cornflower-blue': '#6c63FF',
+      'shuttle-gray': '#5A6170',
+      'gull-gray': '#9DA6B8',
+      'alto': '#DADFEA',
+      'white': '#FFFFFF',
+      'black': '#000000'
     }
   },
   plugins: [],
