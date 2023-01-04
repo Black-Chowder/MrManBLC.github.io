@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import './App.css';
 import { NavBar } from './NavBar';
 
 function App() {
+  const itemSelected = useState(1);
+
   return (
     <div className="main box">
       <div className="row content">
@@ -11,7 +14,7 @@ function App() {
           {/* left-handed nav bar */}
           <div className="flex w-72 grow-0 bg-space-cadet-700 h-full">
 
-            <NavBar/>
+            <NavBar itemSelected={itemSelected}/>
 
           </div>
 
