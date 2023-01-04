@@ -2,14 +2,14 @@ import { useRef, useEffect, useState } from 'react';
 import './NavBar.css';
 
 export const NavBar = ({itemSelected}) => {
-  const boundingRef = useRef();
-  const aboutMeRef = useRef();
-  const resumeRef = useRef();
-  const gamesRef = useRef();
-  const navY = useState(0);
+  const topicsListRef = useRef();
+  const selectedBarY = useState(0);
 
+  const topicRefs = [];
+  
+  //Calculates the y position of the nav bar according to the component passed in
   const calcNavBarTransform = (curRef) => {
-    navY[1](curRef.current.getBoundingClientRect().top - boundingRef.current.getBoundingClientRect().top);
+    selectedBarY[1](curRef.current.getBoundingClientRect().top - topicsListRef.current.getBoundingClientRect().top);
   }
 
   useEffect(() => {
@@ -19,24 +19,38 @@ export const NavBar = ({itemSelected}) => {
     };
   }, []);
 
+  //Returns list component to be used in topics list
+  const CreateTopic = (name) => {
+    const thisRef = useRef();
+    topicRefs.push(thisRef);
+    return (
+      <li 
+        ref={thisRef} 
+        id={name}
+        className="Topic" 
+        onClick={() => calcNavBarTransform(thisRef)}>
+          {name}
+      </li>
+    );
+  }
+
   return(
-    <div className="pt-0 px-5 h-full overflow-y-hidden overflow-x-visible w-full">
+    <div className="pt-0 px-5 h-full w-full z-10">
       
       {/* "Logo" here */}
-      <div className="LogoContainer my-5 bg-space-cadet-800 w-full p-1 rounded-md shadow-lg shadow-space-cadet-900">
+      <div className="LogoContainer bg-space-cadet-800 shadow-lg shadow-space-cadet-900">
         <h1 className="text-3xl font-extrabold text-center">MrManBLC</h1>
       </div>
 
       {/* Content listed here */}
-      <div className="content display relative z-0">
-        <div className="absolute rounded-md w-full h-10 bg-lavender z-10 opacity-30" 
-        style={{top: 0, transform:`translate(0px, ${navY[0]}px)`, transitionDuration: '.3s', 
-        boxShadow: `0px 0px 15px #EAEAEA`}}></div> {/* Selector */}
+      <div className="TopicsContainer">
+        <div className="SelectedBar bg-lavender" 
+        style={{transform:`translate(0px, ${selectedBarY[0]}px)`}}></div> {/* Selector */}
 
-        <ul className="flex flex-col w-full" ref={boundingRef}>
-          <li ref={aboutMeRef} id="About Me" className="p-2 z-20" onClick={() => {calcNavBarTransform(aboutMeRef)}}>About Me</li>
-          <li ref={resumeRef} id="Resume" className="p-2 z-20" onClick={() => {calcNavBarTransform(resumeRef)}}>Resume</li>
-          <li ref={gamesRef} id="Games" className="p-2 z-20" onClick={() => {calcNavBarTransform(gamesRef)}}>Games</li>
+        <ul className="flex flex-col" ref={topicsListRef}>
+          {CreateTopic("About Me")}
+          {CreateTopic("Resume")}
+          {CreateTopic("My Games")}
         </ul>
       </div>
     </div>

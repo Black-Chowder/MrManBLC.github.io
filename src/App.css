@@ -21,3 +21,16 @@ body {
 .main.box .row.footer {
   flex: 0 1 40px;
 }
+
+.contentShadow:after{
+    content:'';
+    border-radius:1.5rem;
+    position: absolute;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 98%;
+    height: 95%;
+    box-shadow: 0px 0px 0px 2000px #313D5A;
+}

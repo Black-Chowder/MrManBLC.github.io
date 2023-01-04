@@ -1,3 +1,28 @@
 .LogoContainer{
-    
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+    padding: 0.25rem;
+    border-radius: 0.375rem;
+}
+
+.TopicsContainer{
+    position: relative;
+    z-index: 0;
+}
+
+.TopicsContainer .SelectedBar{
+    position: absolute;
+    border-radius: 0.375rem;
+    width: 100%;
+    height: 2.5rem;
+    z-index: 10;
+    opacity: 0.3;
+    transition-duration: .3s;
+    box-shadow: 0px 0px 15px #EAEAEA;
+}
+
+.TopicsContainer .Topic{
+    padding: 0.5rem;
+    z-index: 20;
 }
