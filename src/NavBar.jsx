@@ -10,6 +10,7 @@ export const NavBar = ({itemSelected}) => {
   //Calculates the y position of the nav bar according to the component passed in
   const calcNavBarTransform = (curRef) => {
     selectedBarY[1](curRef.current.getBoundingClientRect().top - topicsListRef.current.getBoundingClientRect().top);
+    itemSelected[1](topicRefs.indexOf(curRef));
   }
 
   useEffect(() => {
