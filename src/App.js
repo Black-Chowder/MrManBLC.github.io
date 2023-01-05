@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import { NavBar } from './NavBar';
 import { Carousel, CarouselItem } from './Carousel';
+import { ResumePage } from './topics/ResumePage';
+import { AboutPage } from './topics/AboutPage';
 
 function App() {
   const topicIndex = useState(0);
@@ -25,14 +27,12 @@ function App() {
               
             <Carousel displayIndex={topicIndex[0]} setDisplayIndex={topicIndex[1]}>
 
-              <CarouselItem>
-                  <p className="w-full h-auto break-normal">
-                    Velit pariatur do ut deserunt anim nulla deserunt reprehen cillum laborum excepteur dolor nostrud. Officia dolore cupidatat dolore dolor commodo adipisicing. Nulla laborum eu nisi culpa reprehenderit do deserunt elit ipsum occaecat officia. Mollit dolor aliquip ea deserunt laboris sunt esse excepteur consequat occaecat irure est ea. Aliquip sint fugiat deserunt deserunt. Nostrud do culpa labore eu culpa non.
-                  </p>
-              </CarouselItem>
+              <CarouselItem> <AboutPage/> </CarouselItem>
               
-              <CarouselItem><p>Laboris ipsum anim laboris culpa mollit nostrud reprehenderit labore deserunt. Nostrud quis nulla aliquip ea dolore excepteur ea esse minim esse.</p></CarouselItem>
+              <CarouselItem> <ResumePage/> </CarouselItem>
+
               <CarouselItem><p>Minim exercitation enim ad ex consectetur pariatur enim nostrud. Deserunt exercitation exercitation in quis dolor velit do incididunt cillum sunt. </p></CarouselItem>
+            
             </Carousel>
 
           </div>

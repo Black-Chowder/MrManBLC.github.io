@@ -17,7 +17,6 @@ export const Carousel = ({ setDisplayIndex, displayIndex, children }) => {
         {React.Children.map(children, child => {
           return React.cloneElement(child, { width: "100%", height: "100%" });
         })}
-        {console.log(`Display index = ${displayIndex}`)}
 
       </div>
     </div>
