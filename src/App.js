@@ -24,13 +24,11 @@ function App() {
           <div className="rounded-3xl h-full overflow-y-auto overflow-x-auto p-5 w-auto" style={{boxShadow: "0px 0px 10px #6176A8"}}>
               
             <Carousel displayIndex={topicIndex[0]} setDisplayIndex={topicIndex[1]}>
-              
+
               <CarouselItem>
-                <div className="w-full h-full" style={{border: '1px dotted grey'}}>
-                  <p style={{wordBreak: 'break-all', display:'inline-block', width: '100%', height: '100%'}}>
-                    Velit pariatur do ut deserunt anim nulla deserunt reprehen cillum laborum excepteur dolor nostrud.
+                  <p className="w-full h-auto break-normal">
+                    Velit pariatur do ut deserunt anim nulla deserunt reprehen cillum laborum excepteur dolor nostrud. Officia dolore cupidatat dolore dolor commodo adipisicing. Nulla laborum eu nisi culpa reprehenderit do deserunt elit ipsum occaecat officia. Mollit dolor aliquip ea deserunt laboris sunt esse excepteur consequat occaecat irure est ea. Aliquip sint fugiat deserunt deserunt. Nostrud do culpa labore eu culpa non.
                   </p>
-                </div>
               </CarouselItem>
               
               <CarouselItem><p>Laboris ipsum anim laboris culpa mollit nostrud reprehenderit labore deserunt. Nostrud quis nulla aliquip ea dolore excepteur ea esse minim esse.</p></CarouselItem>
