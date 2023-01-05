@@ -54,6 +54,8 @@ export const NavBar = ({itemSelected}) => {
           {CreateTopic("My Games")}
         </ul>
       </div>
+
+      
     </div>
   );
 }

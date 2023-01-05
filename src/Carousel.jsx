@@ -2,7 +2,7 @@ import React from "react";
 
 export const CarouselItem = ({ children }) => {
   return(
-    <div className="h-full inline-flex overflow-hidden">
+    <div className="h-full max-w-full">
       {children}
     </div>
   );
@@ -11,8 +11,8 @@ export const CarouselItem = ({ children }) => {
 export const Carousel = ({ setDisplayIndex, displayIndex, children }) => {
 
   return (
-    <div className="h-full" style={{overflow: 'hidden'}}>
-      <div className="h-full flex flex-wrap" 
+    <div className="h-full w-full overflow-y-hidden">
+      <div className="h-full w-full flex flex-wrap" 
       style={{transform:`translateY(-${displayIndex}00%)`, whiteSpace:"nowrap", transition: "transform 0.3s"}}>
         {React.Children.map(children, child => {
           return React.cloneElement(child, { width: "100%", height: "100%" });
