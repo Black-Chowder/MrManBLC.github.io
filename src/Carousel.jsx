@@ -2,7 +2,7 @@ import React from "react";
 
 export const CarouselItem = ({ children }) => {
   return(
-    <div className="h-full max-w-full overflow-y-auto">
+    <div className="h-full max-w-full overflow-y-auto w-full">
       {children}
     </div>
   );

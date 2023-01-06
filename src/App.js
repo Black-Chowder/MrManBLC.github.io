@@ -23,7 +23,7 @@ function App() {
 
         {/* Content Container */}
         <div className="col-span-5 w-auto p-3 h-full">
-          <div className="rounded-3xl h-full overflow-y-auto overflow-x-auto p-5 w-auto" style={{boxShadow: "0px 0px 10px #6176A8"}}>
+          <div className="rounded-3xl h-full overflow-y-auto overflow-x-auto p-5 w-full" style={{boxShadow: "0px 0px 10px #6176A8"}}>
               
             <Carousel displayIndex={topicIndex[0]} setDisplayIndex={topicIndex[1]}>
 
