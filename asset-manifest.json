@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.2bb3fab8.css",
-    "main.js": "/static/js/main.b650535b.js",
+    "main.css": "/static/css/main.d8159e7d.css",
+    "main.js": "/static/js/main.b0e8c4af.js",
     "static/js/787.559ba667.chunk.js": "/static/js/787.559ba667.chunk.js",
+    "static/media/PlagueProfile1Cropped.png": "/static/media/PlagueProfile1Cropped.0fa91021beb1649f22ee.png",
     "static/media/resume_guide.pdf": "/static/media/resume_guide.de57ed82cdc9d015efb5.pdf",
+    "static/media/itchio-textless-black.svg": "/static/media/itchio-textless-black.e06a0771d940eea6757d930aaa5cffe2.svg",
     "index.html": "/index.html",
-    "main.2bb3fab8.css.map": "/static/css/main.2bb3fab8.css.map",
-    "main.b650535b.js.map": "/static/js/main.b650535b.js.map",
+    "main.d8159e7d.css.map": "/static/css/main.d8159e7d.css.map",
+    "main.b0e8c4af.js.map": "/static/js/main.b0e8c4af.js.map",
     "787.559ba667.chunk.js.map": "/static/js/787.559ba667.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2bb3fab8.css",
-    "static/js/main.b650535b.js"
+    "static/css/main.d8159e7d.css",
+    "static/js/main.b0e8c4af.js"
   ]
 }
