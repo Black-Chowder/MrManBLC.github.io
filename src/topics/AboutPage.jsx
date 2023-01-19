@@ -1,3 +1,5 @@
+import { SocialLinkBubble } from '../SocialLinkBubble';
+import githubMaskUrl from '../imgs/github-mark/github-mark.png';
 
 export const AboutPage = () => {
 
@@ -6,6 +8,7 @@ export const AboutPage = () => {
       <p className="w-full h-auto break-normal">
         Velit pariatur do ut deserunt anim nulla deserunt reprehen cillum laborum excepteur dolor nostrud. Officia dolore cupidatat dolore dolor commodo adipisicing. Nulla laborum eu nisi culpa reprehenderit do deserunt elit ipsum occaecat officia. Mollit dolor aliquip ea deserunt laboris sunt esse excepteur consequat occaecat irure est ea. Aliquip sint fugiat deserunt deserunt. Nostrud do culpa labore eu culpa non.
       </p>
+      <SocialLinkBubble username="MrManBLC" link="https://github.com/mrmanblc" logoImgSrc={githubMaskUrl}/>
     </div>
   );
 }
