@@ -36,11 +36,24 @@ export const GamesPage = () => {
 //Note: Src img ideal ratio = 630x500
 //      Minimum = 315x250
 const Game = ({ title, thumbnailSrc, description }) => {
+  const MouseOver = (e) => {
+    console.log("Mouse entered");
+  }
+
+  const MouseOut = (e) => {
+    console.log("Mouse left");
+  }
+
+
+
   return(
-    <div className="w-72 h-fit bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl relative">
+    <div className="w-72 hover:w-96 h-fit bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl relative"
+      style={{transition: "all 0.3s"}}>
 
       {/* Overlay */}
-      <div className="w-full h-full absolute"></div>
+      <div className="w-full h-full absolute"
+        onMouseOver={MouseOver}
+        onMouseLeave={MouseOut}/>
 
       {/* Display Content */}
       <div className="h-16 flex justify-center pt-4">
