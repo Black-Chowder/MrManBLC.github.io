@@ -4,6 +4,7 @@ import { NavBar } from './NavBar';
 import { Carousel, CarouselItem } from './Carousel';
 import { ResumePage } from './topics/ResumePage';
 import { AboutPage } from './topics/AboutPage';
+import { GamesPage } from './topics/GamesPage';
 
 function App() {
   const topicIndex = useState(0);
@@ -31,7 +32,7 @@ function App() {
               
               <CarouselItem> <ResumePage/> </CarouselItem>
 
-              <CarouselItem><p>Minim exercitation enim ad ex consectetur pariatur enim nostrud. Deserunt exercitation exercitation in quis dolor velit do incididunt cillum sunt. </p></CarouselItem>
+              <CarouselItem> <GamesPage/> </CarouselItem>
             
             </Carousel>
 
