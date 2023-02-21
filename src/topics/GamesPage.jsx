@@ -5,8 +5,20 @@ import s3_DiceyDefense from '../imgs/games/Dicey Defense/s3.jpg';
 import s4_DiceyDefense from '../imgs/games/Dicey Defense/s4.jpg';
 import s5_DiceyDefense from '../imgs/games/Dicey Defense/s5.png';
 import thumbnail_PrisonBall from '../imgs/games/Prison Ball/thumbnail.png';
+import s1_PrisonBall from '../imgs/games/Prison Ball/s1.jpg';
+import s2_PrisonBall from '../imgs/games/Prison Ball/s2.jpg';
+import s3_PrisonBall from '../imgs/games/Prison Ball/s3.png';
+import s4_PrisonBall from '../imgs/games/Prison Ball/s4.png';
+import s5_PrisonBall from '../imgs/games/Prison Ball/s5.png';
 import thumbnail_Frogs from '../imgs/games/Frogs/thumbnail.png';
+import s1_Frogs from '../imgs/games/Frogs/s1.jpg';
+import s2_Frogs from '../imgs/games/Frogs/s2.jpg';
+import s3_Frogs from '../imgs/games/Frogs/s3.jpg';
 import thumbnail_DevilInHeaven from '../imgs/games/Devil In Heaven/thumbnail.png';
+import s1_DevilInHeaven from '../imgs/games/Devil In Heaven/s1.jpg';
+import s2_DevilInHeaven from '../imgs/games/Devil In Heaven/s2.jpg';
+import s3_DevilInHeaven from '../imgs/games/Devil In Heaven/s3.jpg';
+import s4_DevilInHeaven from '../imgs/games/Devil In Heaven/s4.jpg';
 import thumbnail_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/thumbnail.png';
 import s1_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s1.png';
 import s2_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s2.png';
@@ -47,15 +59,30 @@ export const GamesPage = () => {
         
         <Game title="Prison Ball" 
           thumbnailSrc={thumbnail_PrisonBall}
-          link="https://mrmanblc.itch.io/prison-ball"/>
+          link="https://mrmanblc.itch.io/prison-ball">
+
+          <img className="w-full p-2 rounded-2xl" src={s1_PrisonBall}/>
+          <img className="w-full p-2 rounded-2xl" src={s5_PrisonBall}/>
+        </Game>
         
         <Game title="Frogs!"
           thumbnailSrc={thumbnail_Frogs}
-          link="https://mrmanblc.itch.io/frogs"/>
+          link="https://mrmanblc.itch.io/frogs">
+
+          <img className="w-full p-2 rounded-2xl" src={s1_Frogs}/>
+          <img className="w-full p-2 rounded-2xl" src={s2_Frogs}/>
+          <img className="w-full p-2 rounded-2xl" src={s3_Frogs}/>
+        </Game>
         
         <Game title="Devil In Heaven"
           thumbnailSrc={thumbnail_DevilInHeaven}
-          link="https://mrmanblc.itch.io/a-devil-in-heaven"/>
+          link="https://mrmanblc.itch.io/a-devil-in-heaven">
+          
+          <img className="w-full p-2 rounded-2xl" src={s1_DevilInHeaven}/>
+          <img className="w-full p-2 rounded-2xl" src={s2_DevilInHeaven}/>
+          <img className="w-full p-2 rounded-2xl" src={s3_DevilInHeaven}/>
+          <img className="w-full p-2 rounded-2xl" src={s4_DevilInHeaven}/>
+        </Game>
       </div>
 
     </div>
@@ -80,13 +107,11 @@ const Game = ({ title, thumbnailSrc, description, link, children }) => {
     return(
       <div className={`absolute w-full h-full -right-full z-10`}
         style={{opacity: `${popupActive ? 1 : 0}`, transition: 'all 0.3s', pointerEvents: `${popupActive ? 'auto' : 'none'}`}}>
-        
-        <div className="ml-3 w-full h-full bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl p-3 overflow-hidden">
-          
+        <div className="ml-3 w-full h-full bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl p-3 overflow-hidden shadow-2xl">
           {children}
         </div>
       </div>
-    )
+    );
   }
 
   return(
