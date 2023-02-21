@@ -96,14 +96,23 @@ const Game = ({ title, thumbnailSrc, description, link, children }) => {
   const [popupActive, setPopupActive] = useState(false);
 
   //TODO: Clean up isOverflow calculations
-  //TODO: Detect screen resizing and adjust popups accordingly
   const popupRef = useRef();
   const [isOverflow, setIsOverflow] = useState(false);
   useEffect(() => {
-    let popupRect = popupRef.current.getBoundingClientRect();
-    console.log(popupRect);
-    setIsOverflow(shouldBeLeft(".GamesContainer", popupRect));
-    console.log(`${title} isOverflow = ${isOverflow}`);
+
+    const handleResize = () => {
+
+      //Calculate if popup would be out of bounds if it appeared on the right
+      let popupRect = popupRef.current.getBoundingClientRect();
+      setIsOverflow(shouldBeLeft(".GamesContainer", popupRect));
+    }
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
   }, []);
 
   const MouseOver = (e) => {
@@ -180,7 +189,7 @@ const getTooltipBoundary = (keepTooltipInside) => {
     return boundingBox;
 }
 
-const shouldBeLeft = (stayInsideMe, tooltip) => {
+const shouldBeLeft = (stayInsideMe, tooltip, name) => {
   const wrapperBox = getTooltipBoundary(stayInsideMe);
   
   if (
