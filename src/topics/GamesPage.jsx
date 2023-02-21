@@ -1,38 +1,56 @@
-import title_DiceyDefense from '../imgs/games/title_DiceyDefense.png';
-import title_PrisonBall from '../imgs/games/title_PrisonBall.png';
-import title_Frogs from '../imgs/games/title_Frogs.png';
-import title_DevilInHeaven from '../imgs/games/title_DevilInHeaven.png';
-import title_LittleSheepOfMine from '../imgs/games/title_LittleSheepOfMine.png';
+import thumbnail_DiceyDefense from '../imgs/games/Dicey Defense/thumbnail.png';
+import s1_DiceyDefense from '../imgs/games/Dicey Defense/s1.png';
+import s2_DiceyDefense from '../imgs/games/Dicey Defense/s2.jpg';
+import s3_DiceyDefense from '../imgs/games/Dicey Defense/s3.jpg';
+import s4_DiceyDefense from '../imgs/games/Dicey Defense/s4.jpg';
+import s5_DiceyDefense from '../imgs/games/Dicey Defense/s5.png';
+import thumbnail_PrisonBall from '../imgs/games/Prison Ball/thumbnail.png';
+import thumbnail_Frogs from '../imgs/games/Frogs/thumbnail.png';
+import thumbnail_DevilInHeaven from '../imgs/games/Devil In Heaven/thumbnail.png';
+import thumbnail_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/thumbnail.png';
+import s1_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s1.png';
+import s2_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s2.png';
+import s3_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s3.jpg';
 import '../NavBar.css';
-import { Children, useState } from 'react';
+import { useState } from 'react';
 
 export const GamesPage = () => {
 
   return (
-    <div className="w-full mb-5">
+    <div className="w-full mb-5 overflow-x-clip">
       
       <div className="flex flex-wrap gap-10">
 
         <Game title="Little Sheep of Mine"
-          thumbnailSrc={title_LittleSheepOfMine}
-          description="This is a test description">
+          thumbnailSrc={thumbnail_LittleSheepOfMine}>
 
             <p className="text-lg font-semibold">A scared lamb runs away from the cruel care of wicked Shepard Jack, only to run into yet another sticky situation - Hell itself!</p>
             <br/>
             <p className="text-lg font-semibold">Help her fight off the incoming hordes of demons!</p>
+            <br/>
+            <img className="w-full p-2 rounded-2xl" src={s2_LittleSheepOfMine}/>
+            <img className="w-full p-2 rounded-2xl" src={s3_LittleSheepOfMine}/>
         </Game>
         
         <Game title="Dicey Defense" 
-          thumbnailSrc={title_DiceyDefense}/>
+          thumbnailSrc={thumbnail_DiceyDefense}>
+          
+          <p className="text-lg font-semibold">
+            Defend your road against the onslaught of evil casino items! Place dice-towers with different numbers of sides and watch as they crumble your enemies!
+          </p>
+          <br/>
+          <img className="w-full p-2 rounded-2xl" src={s2_DiceyDefense}/>
+          <img className="w-full p-2 rounded-2xl" src={s3_DiceyDefense}/>
+        </Game>
         
         <Game title="Prison Ball" 
-          thumbnailSrc={title_PrisonBall}/>
+          thumbnailSrc={thumbnail_PrisonBall}/>
         
         <Game title="Frogs!"
-          thumbnailSrc={title_Frogs}/>
+          thumbnailSrc={thumbnail_Frogs}/>
         
         <Game title="Devil In Heaven"
-          thumbnailSrc={title_DevilInHeaven}/>
+          thumbnailSrc={thumbnail_DevilInHeaven}/>
       </div>
 
     </div>
