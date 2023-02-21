@@ -22,7 +22,8 @@ export const GamesPage = () => {
       <div className="flex flex-wrap gap-10">
 
         <Game title="Little Sheep of Mine"
-          thumbnailSrc={thumbnail_LittleSheepOfMine}>
+          thumbnailSrc={thumbnail_LittleSheepOfMine}
+          link="https://mrmanblc.itch.io/sweet-lamb-of-mine">
 
             <p className="text-lg font-semibold">A scared lamb runs away from the cruel care of wicked Shepard Jack, only to run into yet another sticky situation - Hell itself!</p>
             <br/>
@@ -33,7 +34,8 @@ export const GamesPage = () => {
         </Game>
         
         <Game title="Dicey Defense" 
-          thumbnailSrc={thumbnail_DiceyDefense}>
+          thumbnailSrc={thumbnail_DiceyDefense}
+          link="https://mrmanblc.itch.io/dicey-defense">
           
           <p className="text-lg font-semibold">
             Defend your road against the onslaught of evil casino items! Place dice-towers with different numbers of sides and watch as they crumble your enemies!
@@ -44,13 +46,16 @@ export const GamesPage = () => {
         </Game>
         
         <Game title="Prison Ball" 
-          thumbnailSrc={thumbnail_PrisonBall}/>
+          thumbnailSrc={thumbnail_PrisonBall}
+          link="https://mrmanblc.itch.io/prison-ball"/>
         
         <Game title="Frogs!"
-          thumbnailSrc={thumbnail_Frogs}/>
+          thumbnailSrc={thumbnail_Frogs}
+          link="https://mrmanblc.itch.io/frogs"/>
         
         <Game title="Devil In Heaven"
-          thumbnailSrc={thumbnail_DevilInHeaven}/>
+          thumbnailSrc={thumbnail_DevilInHeaven}
+          link="https://mrmanblc.itch.io/a-devil-in-heaven"/>
       </div>
 
     </div>
@@ -60,7 +65,7 @@ export const GamesPage = () => {
 
 //Note: Src img ideal ratio = 630x500
 //      Minimum = 315x250
-const Game = ({ title, thumbnailSrc, description, children }) => {
+const Game = ({ title, thumbnailSrc, description, link, children }) => {
   const [popupActive, setPopupActive] = useState(false);
 
   const MouseOver = (e) => {
@@ -89,7 +94,8 @@ const Game = ({ title, thumbnailSrc, description, children }) => {
       style={{transition: "all 0.3s", width: `${popupActive ? '24' : '18'}rem`}}>
 
       {/* Overlay */}
-      <div className="w-full h-full absolute"
+      <a className="w-full h-full absolute"
+        href={link}
         onMouseOver={MouseOver}
         onMouseLeave={MouseOut}/>
 
