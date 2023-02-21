@@ -24,14 +24,14 @@ import s1_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s1.png';
 import s2_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s2.png';
 import s3_LittleSheepOfMine from '../imgs/games/Little Sheep of Mine/s3.jpg';
 import '../NavBar.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export const GamesPage = () => {
 
   return (
     <div className="w-full mb-5 overflow-x-clip">
       
-      <div className="flex flex-wrap gap-10">
+      <div className="flex flex-wrap gap-10 GamesContainer">
 
         <Game title="Little Sheep of Mine"
           thumbnailSrc={thumbnail_LittleSheepOfMine}
@@ -95,6 +95,17 @@ export const GamesPage = () => {
 const Game = ({ title, thumbnailSrc, description, link, children }) => {
   const [popupActive, setPopupActive] = useState(false);
 
+  //TODO: Clean up isOverflow calculations
+  //TODO: Detect screen resizing and adjust popups accordingly
+  const popupRef = useRef();
+  const [isOverflow, setIsOverflow] = useState(false);
+  useEffect(() => {
+    let popupRect = popupRef.current.getBoundingClientRect();
+    console.log(popupRect);
+    setIsOverflow(shouldBeLeft(".GamesContainer", popupRect));
+    console.log(`${title} isOverflow = ${isOverflow}`);
+  }, []);
+
   const MouseOver = (e) => {
     setPopupActive(true);
   }
@@ -105,9 +116,10 @@ const Game = ({ title, thumbnailSrc, description, link, children }) => {
 
   const Popup = ({children}) => {
     return(
-      <div className={`absolute w-full h-full -right-full z-10`}
-        style={{opacity: `${popupActive ? 1 : 0}`, transition: 'all 0.3s', pointerEvents: `${popupActive ? 'auto' : 'none'}`}}>
-        <div className="ml-3 w-full h-full bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl p-3 overflow-hidden shadow-2xl">
+      <div className={`absolute w-full h-full ${isOverflow ? '-left-full -ml-6' : '-right-full'} z-10`}
+        style={{opacity: `${popupActive ? 1 : 0}`, transition: 'all 0.3s', pointerEvents: `${popupActive ? 'auto' : 'none'}`}}
+        ref={popupRef}>
+        <div className="mx-3 w-full h-full bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl p-3 overflow-hidden shadow-2xl">
           {children}
         </div>
       </div>
@@ -141,4 +153,41 @@ const Game = ({ title, thumbnailSrc, description, link, children }) => {
 
     </div>
   );
+}
+
+
+//TODO: Clean up code here!  This could almost definitely be made waaay simpler
+const getTooltipBoundary = (keepTooltipInside) => {
+    // add viewport
+    let boundingBox = {
+      top: 0,
+      left: 0,
+      /* eslint-disable-next-line no-undef */
+      width: window.innerWidth,
+      /* eslint-disable-next-line no-undef */
+      height: window.innerHeight,
+    };
+    /* eslint-disable-next-line no-undef */
+    const selector = document.querySelector(keepTooltipInside);
+    if (process.env.NODE_ENV !== 'production') {
+      if (selector === null)
+        throw new Error(
+          `${keepTooltipInside} selector does not exist : keepTooltipInside must be a valid html selector 'class' or 'Id'  or a boolean value`
+        );
+    }
+    if (selector !== null) boundingBox = selector.getBoundingClientRect();
+  
+    return boundingBox;
+}
+
+const shouldBeLeft = (stayInsideMe, tooltip) => {
+  const wrapperBox = getTooltipBoundary(stayInsideMe);
+  
+  if (
+    tooltip.right >= wrapperBox.right
+  ){
+    return true;
+  }
+  return false;
+
 }
