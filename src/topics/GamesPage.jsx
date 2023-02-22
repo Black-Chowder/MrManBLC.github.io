@@ -27,11 +27,92 @@ import '../NavBar.css';
 import { useState, useRef, useEffect } from 'react';
 
 export const GamesPage = () => {
+  const gamesContainerRef = useRef();
+
+  
+  //Note: Src img ideal ratio = 630x500
+  //      Minimum = 315x250
+  const Game = ({ title, thumbnailSrc, description, link, children }) => {
+    const [popupActive, setPopupActive] = useState(false);
+    const popupRef = useRef();
+    const [isOverflow, setIsOverflow] = useState(false);
+
+
+    useEffect(() => {
+
+      const handleResize = () => {
+
+        //Calculate if popup would be out of bounds if it appeared on the right
+        let popupRect = popupRef.current.getBoundingClientRect();
+        let gamesContainerRect = gamesContainerRef.current.getBoundingClientRect();
+        setIsOverflow(() => {
+          return popupRect.right >= gamesContainerRect.right;
+        });
+      }
+
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+
+    }, []);
+
+    const MouseOver = (e) => {
+      setPopupActive(true);
+    }
+
+    const MouseOut = (e) => {
+      setPopupActive(false);
+    }
+
+    const Popup = ({children}) => {
+      return(
+        <div className={`absolute w-full h-full ${isOverflow ? '-left-full -ml-6' : '-right-full'} z-10`}
+          style={{opacity: `${popupActive ? 1 : 0}`, transition: 'all 0.3s', pointerEvents: `${popupActive ? 'auto' : 'none'}`}}
+          ref={popupRef}>
+          <div className="mx-3 w-full h-full bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl p-3 overflow-hidden shadow-2xl">
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    return(
+      <div className="w-72 hover:w-96 h-fit bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl relative"
+        style={{transition: "all 0.3s", width: `${popupActive ? '24' : '18'}rem`}}>
+
+        {/* Overlay */}
+        <a className="w-full h-full absolute"
+          href={link}
+          onMouseOver={MouseOver}
+          onMouseLeave={MouseOut}/>
+        {/* TODO: set popupActive to false only once mouse has left for a certain period of time */}
+
+        <Popup>
+          {children}
+        </Popup>
+
+        {/* Display Content */}
+        <div className="h-16 flex justify-center pt-4">
+          <h1 className="font-semibold text-2xl">{title}</h1>
+        </div>
+
+        <img className="w-full p-2 rounded-2xl" src={thumbnailSrc}/>
+
+        <div className="h-16 p-2">
+          <p>{description}</p>
+        </div>
+
+      </div>
+    );
+  }
 
   return (
     <div className="w-full mb-5 overflow-x-clip">
       
-      <div className="flex flex-wrap gap-10 GamesContainer">
+      <div className="flex flex-wrap gap-10"
+        ref={gamesContainerRef}>
 
         <Game title="Little Sheep of Mine"
           thumbnailSrc={thumbnail_LittleSheepOfMine}
@@ -87,116 +168,4 @@ export const GamesPage = () => {
 
     </div>
   );
-}
-
-
-//Note: Src img ideal ratio = 630x500
-//      Minimum = 315x250
-const Game = ({ title, thumbnailSrc, description, link, children }) => {
-  const [popupActive, setPopupActive] = useState(false);
-
-  //TODO: Clean up isOverflow calculations
-  const popupRef = useRef();
-  const [isOverflow, setIsOverflow] = useState(false);
-  useEffect(() => {
-
-    const handleResize = () => {
-
-      //Calculate if popup would be out of bounds if it appeared on the right
-      let popupRect = popupRef.current.getBoundingClientRect();
-      setIsOverflow(shouldBeLeft(".GamesContainer", popupRect));
-    }
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-
-  }, []);
-
-  const MouseOver = (e) => {
-    setPopupActive(true);
-  }
-
-  const MouseOut = (e) => {
-    setPopupActive(false);
-  }
-
-  const Popup = ({children}) => {
-    return(
-      <div className={`absolute w-full h-full ${isOverflow ? '-left-full -ml-6' : '-right-full'} z-10`}
-        style={{opacity: `${popupActive ? 1 : 0}`, transition: 'all 0.3s', pointerEvents: `${popupActive ? 'auto' : 'none'}`}}
-        ref={popupRef}>
-        <div className="mx-3 w-full h-full bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl p-3 overflow-hidden shadow-2xl">
-          {children}
-        </div>
-      </div>
-    );
-  }
-
-  return(
-    <div className="w-72 hover:w-96 h-fit bg-gradient-to-br from-lilac to-space-cadet-400 rounded-xl relative"
-      style={{transition: "all 0.3s", width: `${popupActive ? '24' : '18'}rem`}}>
-
-      {/* Overlay */}
-      <a className="w-full h-full absolute"
-        href={link}
-        onMouseOver={MouseOver}
-        onMouseLeave={MouseOut}/>
-
-      <Popup>
-        {children}
-      </Popup>
-
-      {/* Display Content */}
-      <div className="h-16 flex justify-center pt-4">
-        <h1 className="font-semibold text-2xl">{title}</h1>
-      </div>
-
-      <img className="w-full p-2 rounded-2xl" src={thumbnailSrc}/>
-
-      <div className="h-16 p-2">
-        <p>{description}</p>
-      </div>
-
-    </div>
-  );
-}
-
-
-//TODO: Clean up code here!  This could almost definitely be made waaay simpler
-const getTooltipBoundary = (keepTooltipInside) => {
-    // add viewport
-    let boundingBox = {
-      top: 0,
-      left: 0,
-      /* eslint-disable-next-line no-undef */
-      width: window.innerWidth,
-      /* eslint-disable-next-line no-undef */
-      height: window.innerHeight,
-    };
-    /* eslint-disable-next-line no-undef */
-    const selector = document.querySelector(keepTooltipInside);
-    if (process.env.NODE_ENV !== 'production') {
-      if (selector === null)
-        throw new Error(
-          `${keepTooltipInside} selector does not exist : keepTooltipInside must be a valid html selector 'class' or 'Id'  or a boolean value`
-        );
-    }
-    if (selector !== null) boundingBox = selector.getBoundingClientRect();
-  
-    return boundingBox;
-}
-
-const shouldBeLeft = (stayInsideMe, tooltip, name) => {
-  const wrapperBox = getTooltipBoundary(stayInsideMe);
-  
-  if (
-    tooltip.right >= wrapperBox.right
-  ){
-    return true;
-  }
-  return false;
-
 }
